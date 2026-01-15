@@ -57,6 +57,7 @@ Dự án này nhằm xây dựng một ứng dụng **Java chạy trên console*
 
 * `id` – mã phòng ban
 * `name` – tên phòng ban
+* `available` - số lượng nhân viên 
 
 #### WorkLog (Nhật ký làm việc)
 

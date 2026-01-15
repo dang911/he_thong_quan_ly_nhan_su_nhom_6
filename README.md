@@ -21,6 +21,7 @@ Mục tiêu của dự án:
 ## 2. Thành viên nhóm
 
 | Họ tên             | Vai trò                                    |
+|------|------|
 | Phạm Phương Thảo   | Hỗ trợ xử lý nghiệp vụ và kiểm thử         |
 | Mai Hoàng Đăng     | Phát triển chức năng chính, thiết kế class |
 

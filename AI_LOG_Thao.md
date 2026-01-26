@@ -169,4 +169,334 @@ to manage employees and departments, support salary calculation, and generate ba
 - A runnable .jar file.
 - Source code with clear structure.
 - Flowcharts and class diagrams.
-- AI_LOG.md for AI usage documentation.
+- AI_LOG.md for AI usage documentation
+
+### Tôi hỏi: 
+M3: Utility (Static) - Viết class Validation dùng static methods. bây giờ tuần 3 chúng ta sẽ làm gì đây
+### AI trả lời: 
+Tốt, sang **TUẦN 3 – M3: Utility (Static)** là **đúng mạch và rất “đúng bài PRO192”**.
+Mình sẽ trả lời **rõ: tuần 3 làm gì – làm đến mức nào – KHÔNG làm gì** để bạn không bị quá tay.
+
+---
+
+# 🎯 MỤC TIÊU CHÍNH CỦA TUẦN 3 (M3)
+
+> **Xây dựng các lớp tiện ích (Utility classes) dùng `static method`
+> để hỗ trợ kiểm tra dữ liệu và thao tác chung**
+
+👉 Trọng tâm: **Validation**, KHÔNG phải nghiệp vụ.
+
+---
+
+## 1️⃣ Tuần 3 CHÚNG TA SẼ LÀM GÌ?
+
+### ✅ Viết class `Validation` (static)
+
+* Không cần object
+* Không lưu state
+* Chỉ kiểm tra & xác thực dữ liệu đầu vào
+
+📌 Đây là **utility đúng nghĩa**, giảng viên rất thích.
+
+---
+
+## 2️⃣ Class Validation CHỨA GÌ?
+
+### Vai trò
+
+* Kiểm tra dữ liệu trước khi:
+
+  * tạo Employee
+  * cập nhật thông tin
+* Giảm code lặp
+* Giữ cho entity & HRService **sạch**
+
+---
+
+## 3️⃣ Thiết kế `Validation` (đúng mức tuần 3)
+
+### Class
+
+```
+Validation
+```
+
+### Đặc điểm
+
+* Tất cả method là `static`
+* Không có attribute
+
+---
+
+### Các method NÊN CÓ (đủ – không thừa)
+
+| Method                     | Mục đích               |
+| -------------------------- | ---------------------- |
+| isNotEmpty(String)         | kiểm tra chuỗi rỗng    |
+| isValidEmail(String)       | kiểm tra email         |
+| isValidPhone(String)       | kiểm tra số điện thoại |
+| isPositiveNumber(double)   | kiểm tra số > 0        |
+| isValidDateRange(from, to) | kiểm tra ngày nghỉ     |
+| isValidWorkingHours(int)   | kiểm tra giờ làm       |
+
+📌 **Không cần nhiều hơn** ở tuần 3.
+
+---
+
+## 4️⃣ Validation ĐƯỢC DÙNG Ở ĐÂU?
+
+### Luồng đúng
+
+```
+UI / Main
+ ↓
+Validation (static)
+ ↓
+HRService
+ ↓
+Entity
+```
+
+📌 **Entity KHÔNG tự validate**
+📌 **HRService KHÔNG viết lại logic kiểm tra**
+
+---
+
+## 5️⃣ Những thứ TUẦN 3 KHÔNG LÀM ❌
+
+❌ Không:
+
+* code File IO
+* code menu lớn
+* code nghiệp vụ phức tạp
+* code database
+* tạo object Validation
+
+👉 Validation **chỉ là công cụ hỗ trợ**
+
+---
+
+## 6️⃣ Cập nhật cấu trúc class sau tuần 3
+
+```
+Entity:
+- Employee
+- FullTimeEmployee
+- PartTimeEmployee
+- InternEmployee
+- Department
+- WorkLog
+- Leave
+
+Business:
+- HRService
+
+Utility:
+- Validation (static)
+
+Data:
+- FileHandler
+
+Role:
+- Admin
+```
+
+➡️ **11 class** (hoàn toàn ổn)
+
+---
+
+## 7️⃣ Câu mô tả CHUẨN để ghi vào report M3
+
+Bạn có thể ghi nguyên văn:
+
+> *“In this milestone, a utility class Validation is implemented using static methods to validate user input. This helps reduce code duplication and keeps business and entity classes clean.”*
+
+---
+
+## 8️⃣ Thứ tự làm việc khuyến nghị cho TUẦN 3
+
+1️⃣ Tạo class `Validation`
+2️⃣ Liệt kê static methods (chưa cần regex phức tạp)
+3️⃣ Ghi mô tả vai trò vào report
+4️⃣ (Optional) Update Class Diagram → thêm Validation (<<utility>>)
+
+---
+
+## 9️⃣ Nếu giảng viên hỏi: “Sao dùng static?”
+
+Bạn trả lời:
+
+> *“Validation methods do not depend on object state, so static methods are more suitable and efficient.”*
+
+---
+
+Nếu bạn muốn, bước tiếp theo mình có thể:
+
+* ✍️ Viết **code mẫu Validation (chuẩn Java, dễ hiểu)**
+* 📐 Cập nhật **Class Diagram UML có <<utility>>**
+* 🧠 Chỉ ra **method nào nên validate ở UI, method nào ở HRService**
+
+Bạn muốn đi tiếp theo hướng nào?
+
+### Tôi hỏi:
+Chỉ ra method nào nên validate ở UI, method nào ở HRService
+
+### AI trả lời:
+Câu hỏi này **rất đúng trọng tâm M3** và là chỗ giảng viên hay hỏi để kiểm tra **tư duy phân tầng**.
+Mình sẽ trả lời **cực kỳ rõ ràng**, theo nguyên tắc **“validate sớm – validate đúng chỗ”**.
+
+---
+
+# NGUYÊN TẮC CỐT LÕI (nhớ câu này)
+
+> **UI validate FORM – HRService validate BUSINESS RULE**
+
+---
+
+## 1️⃣ Validate ở UI (Input-level validation)
+
+👉 **Mục tiêu**:
+
+* Chặn lỗi NGAY KHI NHẬP
+* Tránh tạo object sai
+* Tránh gọi HRService vô nghĩa
+
+### UI nên validate cái gì?
+
+| Nhóm           | Method Validation            | Lý do            |
+| -------------- | ---------------------------- | ---------------- |
+| Chuỗi rỗng     | `isNotEmpty(String)`         | Tránh nhập trống |
+| Định dạng      | `isValidEmail(String)`       | Lỗi cú pháp      |
+| Định dạng      | `isValidPhone(String)`       | Sai format       |
+| Kiểu số        | `isPositiveNumber(double)`   | Tránh số âm      |
+| Khoảng giá trị | `isValidWorkingHours(int)`   | Giờ làm hợp lệ   |
+| Ngày           | `isValidDateRange(from, to)` | Ngày nghỉ logic  |
+
+📌 Những validate này:
+
+* **không cần biết hệ thống đang có gì**
+* chỉ cần biết **giá trị người dùng nhập**
+
+---
+
+### Ví dụ tư duy (KHÔNG cần code)
+
+```
+Nhập email
+ → Validation.isValidEmail()
+ → nếu OK → gọi HRService.addEmployee()
+```
+
+---
+
+## 2️⃣ Validate ở HRService (Business-level validation)
+
+👉 **Mục tiêu**:
+
+* Bảo vệ tính đúng đắn của hệ thống
+* Không tin UI (UI có thể bị bỏ qua)
+
+---
+
+### HRService nên validate cái gì?
+
+| Nhóm            | Ví dụ                                 | Vì sao           |
+| --------------- | ------------------------------------- | ---------------- |
+| Trùng ID        | employeeId đã tồn tại                 | Quy tắc hệ thống |
+| Tồn tại         | departmentId có tồn tại không         | Liên kết entity  |
+| Quan hệ         | phòng ban còn nhân viên thì không xóa | Rule             |
+| Trạng thái      | không duyệt nghỉ trùng ngày           | Business         |
+| Logic nghiệp vụ | intern không vượt giờ                 | Rule             |
+
+📌 Những validate này:
+
+* **cần truy cập danh sách entity**
+* **liên quan nhiều object**
+
+➡️ UI **không làm được**
+
+---
+
+## 3️⃣ Mapping RÕ RÀNG (rất nên ghi vào report)
+
+### Validation class (static)
+
+```
+isNotEmpty()
+isValidEmail()
+isValidPhone()
+isPositiveNumber()
+isValidDateRange()
+isValidWorkingHours()
+```
+
+### HRService (method nội bộ)
+
+```
+isEmployeeIdExists()
+isDepartmentExists()
+canDeleteDepartment()
+isLeaveOverlap()
+```
+
+📌 HRService **có thể gọi Validation**, nhưng Validation **không gọi HRService**
+
+---
+
+## 4️⃣ Sơ đồ luồng chuẩn
+
+```
+[User Input]
+   ↓
+[UI Validation]  ← Validation (static)
+   ↓
+[HRService Validation] ← business rules
+   ↓
+[Entity Creation / Update]
+```
+
+---
+
+## 5️⃣ Những lỗi hay bị trừ điểm ❌
+
+| Lỗi                               | Vì sao sai                 |
+| --------------------------------- | -------------------------- |
+| Validate ID trùng ở UI            | UI không biết data         |
+| Validate format email ở HRService | Sai tầng                   |
+| Entity tự validate                | Entity không biết hệ thống |
+| Validation giữ List<Employee>     | Utility không giữ state    |
+
+---
+
+## 6️⃣ Câu trả lời “chuẩn giảng viên” (nên học thuộc)
+
+> *“UI performs basic input validation, while HRService enforces business rules to ensure system consistency.”*
+
+---
+
+## 7️⃣ Áp dụng trực tiếp vào project của bạn
+
+### Khi thêm Employee:
+
+* UI:
+
+  * name không rỗng
+  * email hợp lệ
+  * lương > 0
+* HRService:
+
+  * id chưa tồn tại
+  * department hợp lệ
+
+➡️ **Cả hai đều cần, nhưng vai trò khác nhau**
+
+---
+
+Nếu bạn muốn, bước tiếp theo mình có thể:
+
+* 🧩 Liệt kê **validation checklist cho từng use case**
+* ✍️ Viết **code mẫu Validation + HRService check**
+* 📝 Soạn luôn **phần giải thích M3 cho report**
+
+Bạn muốn đi tiếp phần nào?
+

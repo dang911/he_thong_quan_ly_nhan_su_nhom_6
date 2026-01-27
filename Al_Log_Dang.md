@@ -382,3 +382,104 @@ Nếu bạn muốn mình:
 ✨ Viết bằng tiếng Anh
 
 👉 chỉ cần gửi tên + số thành viên, mình làm bảng hoàn chỉnh cho bạn.
+
+4.3 Thiết kế lớp (Cấu trúc OOP)
+Hệ thống được thiết kế với 10 lớp chính, áp dụng các nguyên lý kế thừa, trừu tượng và đóng gói.
+Nhóm lớp thực thể
+
+Employee (abstract)
+FullTimeEmployee
+PartTimeEmployee
+InternEmployee
+Department
+WorkLog
+Leave 
+
+Nhóm lớp xử lý nghiệp vụ
+
+HRService
+
+
+List<Employee>
+List<Department>
+List<WorkLog>
+List<Leave>
+Xử lý:
+
+  * add / remove / search employee
+  * assign department
+  * calculate payroll
+  * approve leave
+Nhóm lớp hệ thống
+
+FileHandler
+
+
+employeeFile
+departmentFile
+workLogFile
+Xử lý:
+
+  * saveEmployees()
+  * loadEmployees()
+  * saveWorkLogs()
+  * loadLeaves()
+
+Admintrators
+
+
+username
+password
+  tôi có hệ thống quản lý nhân sự sau vậy giải thích dõ thêm cho tôi tại sao lại tách worklog và leave ra nếu gộp lại được không
+Trong thiết kế hệ thống quản lý nhân sự (HRMS) của bạn, việc tách riêng WorkLog và Leave thành hai lớp (entity) riêng biệt là một lựa chọn rất hợp lý và tuân theo các nguyên tắc thiết kế tốt trong OOP cũng như trong thực tế quản lý nhân sự. Dưới đây là giải thích chi tiết tại sao nên tách, và liệu có thể gộp lại được không.
+Tại sao nên tách WorkLog và Leave thành hai entity riêng?
+
+Bản chất và mục đích hoàn toàn khác nhau (Single Responsibility Principle - SRP)Tiêu chíWorkLogLeave (Nghỉ phép)Mục đích chínhGhi nhận thời gian làm việc thực tếXin nghỉ và phê duyệt ngày không làm việcTần suất ghi nhậnHàng ngày / nhiều lần trong ngàyThỉnh thoảng (vài lần/tháng hoặc ít hơn)Dữ liệu điển hìnhcheck-in, check-out, giờ làm, overtime, nghỉ giữa ca, dự án/taskloại nghỉ (phép năm, ốm, không lương…), ngày bắt đầu/kết thúc, trạng thái phê duyệtTính chấtDữ liệu sự kiện (event log)Dữ liệu yêu cầu + phê duyệt + số dưẢnh hưởng đến lươngDùng để tính công, tăng ca, phạt đi muộn/về sớmDùng để trừ ngày phép, tính lương trừ/nghỉ không lươngQuy trình nghiệp vụThường tự động hoặc nhân viên tự ghiCó quy trình xin → duyệt → từ chối→ Hai loại dữ liệu này không cùng một khái niệm, gộp lại sẽ vi phạm nguyên tắc Single Responsibility → lớp trở nên phức tạp, khó bảo trì.
+Mối quan hệ khác nhau với các thực thể khác
+WorkLog thường gắn với Employee + ngày cụ thể + có thể gắn với Department, Project/Task.
+Leave gắn với Employee + khoảng thời gian + loại phép + người duyệt + số ngày phép còn lại.
+Nếu gộp thành một lớp (ví dụ: AttendanceRecord), bạn sẽ phải dùng rất nhiều thuộc tính optional (nullable), dẫn đến:
+Code đầy if-else kiểm tra loại record
+Dễ nhầm lẫn dữ liệu
+Khó mở rộng sau này
+
+Yêu cầu truy vấn và báo cáo rất khác nhau
+Báo cáo chấm công: tổng giờ làm, muộn/về sớm, overtime → chủ yếu dựa vào WorkLog
+Báo cáo nghỉ phép: số ngày phép còn lại, lịch sử nghỉ, tỷ lệ nghỉ bệnh → chủ yếu dựa vào Leave
+Payroll: cần kết hợp cả hai, nhưng logic tính khác nhau hoàn toàn
+Nếu gộp lại, các truy vấn sẽ phức tạp hơn rất nhiều (phải filter theo loại record).
+Quy trình nghiệp vụ và quyền hạn khác biệt
+WorkLog: nhân viên tự ghi hoặc máy chấm công → ít cần duyệt
+Leave: thường cần ít nhất 1 cấp duyệt (trưởng phòng) → có trạng thái Pending/Approved/Rejected
+→ Nếu gộp, trạng thái duyệt sẽ không hợp lý với WorkLog hàng ngày.
+Tuân thủ nguyên tắc Open-Closed và dễ mở rộngSau này nếu bạn muốn thêm:
+Remote work log
+Business trip log
+Training log
+→ Chỉ cần tạo lớp con hoặc entity mới, không ảnh hưởng đến Leave.Nếu gộp từ đầu, mỗi lần thêm loại mới lại phải sửa lớp lớn → vi phạm Open-Closed.
+
+Vậy có thể gộp WorkLog và Leave lại được không?
+Có thể, nhưng không nên trong hầu hết các trường hợp thực tế, trừ khi hệ thống của bạn rất đơn giản (ví dụ: chỉ quản lý vài chục nhân viên, không cần báo cáo chi tiết, không tính tăng ca, không có nhiều loại phép).
+Các cách gộp thường gặp (và lý do không tốt):
+
+Gộp thành một lớp Attendance với trường type = "WORK" / "LEAVE"
+→ Lớp phình to, nhiều trường null, logic if-else khắp nơi.
+Để Leave kế thừa từ WorkLog hoặc ngược lại
+→ Không hợp lý về mặt ngữ nghĩa (nghỉ phép không phải là một dạng "làm việc").
+Dùng một bảng chung trong database với discriminator
+→ Vẫn chấp nhận được ở mức database, nhưng ở mức OOP thì vẫn nên tách lớp để code rõ ràng.
+
+Kết luận – Khuyến nghị cho hệ thống của bạn
+Giữ nguyên thiết kế tách biệt WorkLog và Leave là lựa chọn tốt nhất trong hầu hết các dự án thực tế, vì:
+
+Tuân thủ SOLID (đặc biệt SRP và OCP)
+Dễ bảo trì, mở rộng
+Phù hợp với thực tế nghiệp vụ HR
+Dễ viết query, báo cáo, tính lương chính xác
+
+Nếu bạn muốn tối ưu hơn nữa, có thể cân nhắc:
+
+Tạo một interface chung (ví dụ: AttendanceRecord) nếu cần xử lý chung một số logic (như liên kết với Employee, ngày tháng).
+Hoặc tạo một lớp trung gian EmployeeDailyRecord để tổng hợp WorkLog + Leave trong ngày (dùng để hiển thị lịch sử một ngày).
+
+Bạn đang làm đồ án hay dự án thực tế? Nếu cho mình biết thêm về yêu cầu cụ thể (có tính tăng ca không, có chấm công bằng máy không, có bao nhiêu loại phép...) thì mình có thể gợi ý chi tiết hơn về mối quan hệ giữa WorkLog và Leave nhé!

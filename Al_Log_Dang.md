@@ -483,3 +483,159 @@ Tạo một interface chung (ví dụ: AttendanceRecord) nếu cần xử lý ch
 Hoặc tạo một lớp trung gian EmployeeDailyRecord để tổng hợp WorkLog + Leave trong ngày (dùng để hiển thị lịch sử một ngày).
 
 Bạn đang làm đồ án hay dự án thực tế? Nếu cho mình biết thêm về yêu cầu cụ thể (có tính tăng ca không, có chấm công bằng máy không, có bao nhiêu loại phép...) thì mình có thể gợi ý chi tiết hơn về mối quan hệ giữa WorkLog và Leave nhé!
+
+Bạn đã nói:
+Dựa trên các nguồn tài liệu, yêu cầu nộp bài cho buổi thứ Bảy tới bao gồm hai nội dung chính xoay quanh việc phân tích và vẽ sơ đồ lớp (class diagram) có và không có tính kế thừa. Cụ thể như sau:
+
+1. Hai phiên bản sơ đồ cần thực hiện
+Thầy yêu cầu mỗi nhóm (hoặc cá nhân) phải chuẩn bị hai phiên bản sơ đồ để so sánh:
+• Phiên bản có kế thừa: Bạn cần hỏi AI xem dự án của mình có tính kế thừa hay không, lớp nào kế thừa lớp nào, sau đó yêu cầu AI vẽ sơ đồ lớp có thể hiện tính kế thừa đó.
+• Phiên bản không có kế thừa: Bạn yêu cầu AI thực hiện quy trình ngược lại bằng cách bỏ lớp cha (ví dụ lớp Pet) và vẽ lại sơ đồ hoặc viết lại code để thấy rõ sự trùng lặp dữ liệu giữa các lớp con.
+
+2. Yêu cầu kỹ thuật đối với sơ đồ
+Khi thực hiện sơ đồ có tính kế thừa, bạn phải tuân thủ các quy tắc ký hiệu nghiêm ngặt:
+• Sử dụng mũi tên rỗng: Phải dùng ký hiệu mũi tên rỗng trỏ từ lớp con về lớp cha để thể hiện kế thừa. Không được dùng mũi tên đặc vì nó mang ý nghĩa khác.
+• Không thêm chữ chú thích: Không cần ghi chữ "inheritance" hay "inheritant" trên sơ đồ vì bản thân ký hiệu mũi tên rỗng đã đủ ý nghĩa.
+• Chỉ dùng Private: Tất cả các thuộc tính phải để ở chế độ private. Tuyệt đối không sử dụng protected (ký hiệu dấu thăng #) ngay cả khi AI gợi ý.
+• Độ rõ nét: Hình ảnh chụp sơ đồ phải rõ ràng, không được mờ. Nếu sơ đồ quá lớn, bạn nên chụp thành từng phần để thầy có thể đọc được.
+
+3. Cách thức nộp bài và mục tiêu
+• Nộp bài: Chụp hình các phiên bản sơ đồ và gửi lên group trước buổi học tiếp theo.
+• Ghi lại quá trình: Các bước thực hiện "quy trình ngược" này (hỏi AI để so sánh hai phiên bản) phải được ghi lại trong AI log (nhật ký trò chuyện với AI).
+• Mục tiêu giải thích: Sinh viên phải dựa trên hai phiên bản này để giải thích lý do tại sao cần dùng tính kế thừa (để loại bỏ sự trùng lặp mã nguồn). Bạn cần chứng minh được rằng mình đã kiểm tra kỹ và hiểu rõ sơ đồ chứ không chỉ phó mặc cho AI.
+
+
+Bản có lớp cha (Employee) nhưng chưa vẽ kế thừa:
+
+
+
+
+
+Bản vẽ thể hiện tính kế thừa:
+
+
+
+
+
+Bản vẽ không có kế thừa:
+
+
+thầy sẽ hỏi những gì 
+ChatGPT đã nói:
+Dựa đúng vào yêu cầu thầy đã nêu, thì khi lên lớp thầy sẽ không hỏi lan man, mà sẽ xoay quanh việc kiểm tra bạn có hiểu bản chất kế thừa hay chỉ “nhờ AI vẽ”.
+Các câu hỏi thầy rất hay hỏi sẽ rơi vào những nhóm sau 👇 (mình viết dễ hiểu – đúng trọng tâm, đúng phong cách thầy).
+
+1️⃣ Câu hỏi kiểm tra BẢN CHẤT kế thừa
+Thầy sẽ hỏi để xem vì sao phải dùng inheritance
+
+🔹 “Vì sao em cần dùng tính kế thừa trong bài này?”
+👉 Câu trả lời đúng trọng tâm:
+
+Vì các lớp con có nhiều thuộc tính giống nhau. Dùng kế thừa giúp gom các thuộc tính chung vào lớp cha để tránh trùng lặp dữ liệu và dễ bảo trì.
+
+🔹 “Nếu không dùng kế thừa thì có vấn đề gì?”
+👉 Trả lời:
+
+Các lớp con sẽ bị lặp lại nhiều thuộc tính giống nhau, gây dư thừa dữ liệu, khó sửa đổi khi thay đổi yêu cầu.
+
+🔹 “Trong hai bản vẽ, bản nào dễ bảo trì hơn? Vì sao?”
+👉 Trả lời:
+
+Bản có kế thừa dễ bảo trì hơn vì khi cần sửa thuộc tính chung chỉ cần sửa ở lớp cha.
+
+2️⃣ Câu hỏi so sánh 2 BẢN VẼ
+Thầy rất thích hỏi so sánh
+
+🔹 “Em chỉ ra giúp thầy phần nào bị trùng lặp trong bản không có kế thừa?”
+👉 Bạn chỉ vào:
+
+name
+
+salary
+
+employeeId
+(hoặc các thuộc tính chung)
+
+👉 Nói:
+
+Các thuộc tính này xuất hiện ở nhiều lớp con.
+
+🔹 “Bản không có kế thừa có sai không?”
+👉 Câu trả lời chuẩn:
+
+Không sai về mặt cú pháp, nhưng không tối ưu về thiết kế hướng đối tượng.
+
+3️⃣ Câu hỏi về KÝ HIỆU sơ đồ (rất quan trọng)
+Thầy hay bắt lỗi kỹ thuật 👀
+
+🔹 “Mũi tên kế thừa em dùng mũi tên gì?”
+👉 Trả lời:
+
+Mũi tên rỗng (tam giác rỗng) trỏ từ lớp con về lớp cha.
+
+🔹 “Nếu em dùng mũi tên đặc thì sao?”
+👉 Trả lời:
+
+Mũi tên đặc thể hiện quan hệ khác (association/composition), không phải kế thừa.
+
+🔹 “Vì sao em không ghi chữ inheritance?”
+👉 Trả lời:
+
+Vì ký hiệu mũi tên rỗng đã thể hiện rõ quan hệ kế thừa theo UML.
+
+4️⃣ Câu hỏi về ACCESS MODIFIER
+Câu này rất hay hỏi vì thầy đã dặn rõ
+
+🔹 “Vì sao em dùng private cho toàn bộ thuộc tính?”
+👉 Trả lời:
+
+Theo yêu cầu bài tập và nguyên tắc đóng gói (encapsulation), dữ liệu không được truy cập trực tiếp từ bên ngoài.
+
+🔹 “Sao không dùng protected cho lớp cha?”
+👉 Trả lời chuẩn:
+
+Vì thầy yêu cầu không dùng protected, tất cả thuộc tính phải là private dù AI có gợi ý khác.
+
+5️⃣ Câu hỏi về QUY TRÌNH dùng AI
+Thầy sẽ kiểm tra bạn có làm thật hay không
+
+🔹 “Em dùng AI như thế nào để làm bài này?”
+👉 Trả lời gọn – đúng:
+
+Em hỏi AI phân tích mô hình có kế thừa, sau đó yêu cầu AI bỏ lớp cha để tạo phiên bản không có kế thừa và so sánh sự trùng lặp.
+
+🔹 “Em có tin hoàn toàn vào AI không?”
+👉 Trả lời:
+
+Không. Em dùng AI để gợi ý, sau đó tự kiểm tra lại sơ đồ và đối chiếu yêu cầu của thầy.
+
+6️⃣ Câu hỏi TÌNH HUỐNG (câu ăn điểm)
+Nếu thầy hỏi sâu hơn:
+
+🔹 “Nếu sau này thêm một loại Employee mới thì bản nào tốt hơn?”
+👉 Trả lời:
+
+Bản có kế thừa tốt hơn vì chỉ cần tạo lớp con mới, không cần lặp lại các thuộc tính chung.
+
+✅ TÓM LẠI – THẦY MUỐN THẤY GÌ?
+Thầy muốn thấy bạn:
+
+Hiểu vì sao cần kế thừa
+
+Biết so sánh có – không có kế thừa
+
+Dùng đúng ký hiệu UML
+
+Không mù quáng tin AI
+
+Giải thích được bằng lý luận của bản thân
+
+Nếu bạn muốn, mình có thể:
+
+✍️ Soạn câu trả lời mẫu ngắn 2–3 câu để bạn học thuộc
+
+📌 Đóng vai thầy hỏi – bạn trả lời (mock oral)
+
+🔍 Soi sơ đồ của bạn xem có chỗ nào dễ bị thầy bắt lỗi
+
+👉 Bạn muốn luyện theo cách nào?

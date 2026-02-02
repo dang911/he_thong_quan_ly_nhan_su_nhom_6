@@ -55,20 +55,17 @@ Dự án này nhằm xây dựng một hệ thống HRMS đơn giản bằng Jav
 
 #### FullTimeEmployee
 - `baseSalary` – lương cơ bản  
-- `bonus` – thưởng  
-- `allowance` – phụ cấp  
+- `bonus` – thưởng
 
 #### PartTimeEmployee
-- `hourlyRate` – lương theo giờ  
-- `hoursWorked` – số giờ làm việc  
+- `hourlyRate` – lương theo giờ   
 
 #### InternEmployee
-- `stipend` / `allowance` – trợ cấp  
+- `allowance` – trợ cấp  
 
 #### Department
 - `id` – mã phòng ban  
 - `name` – tên phòng ban  
-- `available` – số lượng nhân viên  
 
 #### WorkLog
 - `employeeId` – mã nhân viên  

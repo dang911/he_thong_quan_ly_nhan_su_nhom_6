@@ -12,6 +12,9 @@ public class InternEmployee extends Employee {
         this.allowance = allowance;
     }
 
+    public double getAllowance() {
+        return this.allowance;
+    }
     @Override
     public double calculateSalary() {
         return this.allowance;

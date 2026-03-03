@@ -19,9 +19,32 @@ public abstract class Employee {
         this.email = email;
         this.departmentId = departmentId;
     }
+    public String getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
     @Override
     public String toString() {
-        return this.id + " - " + this.fullName + " - " + this.departmentId;
+        return "| ID: " + this.id + " | Name: " + this.fullName + " | Date Of Birth: " + this.dateOfBirth + " | Phone: " + this.phone + " | Email: " + this.email + " | DepartmentID: " + this.departmentId;
     }
     public abstract double calculateSalary();
 }

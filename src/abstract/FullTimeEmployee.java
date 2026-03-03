@@ -13,7 +13,14 @@ public class FullTimeEmployee extends Employee {
         this.baseSalary = baseSalary;
         this.bonus = bonus;
     }
-
+    
+    public double getBaseSalary() {
+        return this.baseSalary;
+    }
+    public double getBonus() {
+        return this.bonus;
+    }
+    
     @Override
     public double calculateSalary() {
         return this.baseSalary + this.bonus;

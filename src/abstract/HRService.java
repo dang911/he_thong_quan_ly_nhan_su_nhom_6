@@ -23,20 +23,26 @@ public class HRService {
     }
     
     public double calculateSalaryById(String id){
+        FileHandler fileHandler = new FileHandler();
+
+        List<Employee> employees = fileHandler.loadEmployees();
+        List<WorkLog> workLogs = fileHandler.loadWorkLogs();
+        
         Employee found = null;
 
-        for (Employee e : this.employees) {
+        for (Employee e : employees) {
             if (e.getId().equals(id)) {
                 found = e;
                 break;
             }
         }
+       
 
         if (found == null) {
             return 0;
         }    
             long days = 0;
-        for (WorkLog w : this.workLogs) {
+        for (WorkLog w : workLogs) {
             if (w.getEmpId().equals(id)) {
                 days = w.daysWorked();
             }
@@ -84,4 +90,3 @@ public class HRService {
         }
     }
 }
-

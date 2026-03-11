@@ -88,6 +88,15 @@ class WorkLog{
     +getEmpId() String
 }
 
+class Validation{
+    +isNotEmpty(value: String) boolean
+    +isPositiveNumber(value: double) boolean
+    +isValidEmail(email: String) boolean
+    +isValidPhone(phone: String) boolean
+    +isValidWorkingHours(hours: int) boolean
+    +isValidDateRange(from: java.time.LocalDate ,to: java.time.LocalDate) boolean
+}
+
 class Hrdemo{
     -sc: Scanner
     -hrService: HRService

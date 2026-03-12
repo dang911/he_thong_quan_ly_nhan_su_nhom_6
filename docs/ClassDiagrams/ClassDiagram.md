@@ -10,7 +10,7 @@ class Employee{
     -departmentId : String
     +Employee(id: String,fullName: String,dateOfBirth: Date,phone: String,email: String,departmentId: String)
     +getId()  String
-    +getFullName()  String
+    +getFullName() String
     +getDateOfBirth() Date
     +getPhone() String
     +getEmail() String
@@ -60,19 +60,19 @@ class HRService{
     -leaves: List<Leave>
     -fileHandler: FileHandler
     +addEmployee(e: Employee)  void
-    +addWorkLog(w WorkLog) void
-    +DeleteEmployee(id: String)  void
+    +addWorkLog(w: WorkLog) void
+    +deleteEmployee(id: String)  void
     +updateEmployee( id: String)  void
     +searchEmployee( type: int,sf: String)  void
     +calculateSalaryById(id: String) double
-    +showSalaryDepId(depId: String) void
-    +showByDept(depID String) void
+    +showSalaryDeptId(deptId: String) void
+    +showByDept(deptId: String) void
     +showAllEmployees() void
     +showAllWorkLogs()  void
 }
 
 class FileHandler{
-    +saveEmployees(employees: List<Employee>,append: boolean): void
+    +saveEmployees(employees: List<Employee>,append: boolean) void
     +saveWorkLogs(workLogs: List<WorkLog>) void
     +loadEmployees() List<Employee>
     +loadWorkLogs() List<WorkLog> 

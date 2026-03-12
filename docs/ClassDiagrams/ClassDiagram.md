@@ -17,7 +17,8 @@ class Employee{
     +getDepartmentId() String
     +setPhone(newphone: String) void
     +setEmail(newemail: String) void
-    +calculateSalary() double
+    +daySalary() double
+    +calculateSalary(workLogs: List<WorkLog>) double
     +toString() String
 }
 
@@ -27,7 +28,7 @@ class FullTimeEmployee{
     +FullTimeEmployee(id: String,fullName: String,dob: Date,phone: String,email: String,departmentId: String)
     +getBaseSalary() double
     +getBonus() double
-    +calculateSalary() double
+    +daySalary() double
     +toString() String
 }
 
@@ -35,7 +36,7 @@ class PartTimeEmployee{
     -hourlyRate : double
     +PartTimeEmployee(id: String,fullName: String,dob: Date,phone: String,email: String,departmentId: String)
     +getHourlyRate() double
-    +calculateSalary() double
+    +daySalary() double
     +toString() String
 }
 
@@ -43,7 +44,7 @@ class InternEmployee{
     -allowance : double
     +InternEmployee(id: String,fullName: String,dob: Date,phone: String,email: String,departmentId: String)
     +getAllowance()  double
-    +calculateSalary() double
+    +daySalary() double
     +toString() String
 }
 

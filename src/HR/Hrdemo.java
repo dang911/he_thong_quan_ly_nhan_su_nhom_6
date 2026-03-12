@@ -1,170 +1,3 @@
-//
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this1 license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
-// */
-//package hrdemo;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//import java.util.Scanner2;
-//
-//public class Hrdemo {
-//
-//    static Scanner sc = new Scanner(System.in);
-//    private static final HRService hrService = new HRService();
-//    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//
-//    public static void main(String[] args) {
-//
-//        int choice;
-//        do {
-//            showMenu();
-//            choice = Integer.parseInt(sc.nextLine());
-//
-//            switch (choice) {
-//                case 1:
-//                    addFullTimeEmployee();
-//                    break;
-//                case 2:
-//                    addPartTimeEmployee();
-//                    break;
-//                case 3:
-//                    addInternEmployee();
-//                    break;
-//                case 4:
-//                    hrService.showAllEmployees();
-//                    break;
-//                case 5:
-//                    System.out.println("Exit program!");
-//                    break;
-//                default:
-//                    System.out.println("Invalid choice!");
-//            }
-//
-//        } while (choice != 5);
-//    }
-//
-//    private static void showMenu() {
-//        System.out.println("\n===== HUMAN RESOURCE MANAGEMENT =====");
-//        System.out.println("1. Add Full-time Employee");
-//        System.out.println("2. Add Part-time Employee");
-//        System.out.println("3. Add Intern");
-//        System.out.println("4. Show all employees");
-//        System.out.println("5. Exit");
-//        System.out.print("Choose: ");
-//    }
-//
-//    // ===== ADD FULL TIME =====
-//    private static void addFullTimeEmployee() {
-//        try {
-//            System.out.print("ID: ");
-//            String id = sc.nextLine();
-//
-//            System.out.print("Full name: ");
-//            String name = sc.nextLine();
-//
-//            System.out.print("Date of birth (dd/MM/yyyy): ");
-//            Date dob = sdf.parse(sc.nextLine());
-//
-//            System.out.print("Phone: ");
-//            String phone = sc.nextLine();
-//
-//            System.out.print("Email: ");
-//            String email = sc.nextLine();
-//
-//            System.out.print("Department ID: ");
-//            String deptId = sc.nextLine();
-//
-//            System.out.print("Monthly salary: ");
-//            double salary = Double.parseDouble(sc.nextLine());
-//
-//            System.out.print("Bonus: ");
-//            double bonus = Double.parseDouble(sc.nextLine());
-//
-//            Employee e = new FullTimeEmployee(
-//                    id, name, dob, phone, email, deptId, salary, bonus
-//            );
-//
-//            hrService.addEmployee(e);
-//            System.out.println("Added Full-time Employee successfully!");
-//
-//        } catch (Exception e) {
-//            System.out.println("Invalid input!");
-//        }
-//    }
-//
-//    // ===== ADD PART TIME =====
-//    private static void addPartTimeEmployee() {
-//        try {
-//            System.out.print("ID: ");
-//            String id = sc.nextLine();
-//
-//            System.out.print("Full name: ");
-//            String name = sc.nextLine();
-//
-//            System.out.print("Date of birth (dd/MM/yyyy): ");
-//            Date dob = sdf.parse(sc.nextLine());
-//
-//            System.out.print("Phone: ");
-//            String phone = sc.nextLine();
-//
-//            System.out.print("Email: ");
-//            String email = sc.nextLine();
-//
-//            System.out.print("Department ID: ");
-//            String deptId = sc.nextLine();
-//
-//            System.out.print("Hourly rate: ");
-//            double rate = Double.parseDouble(sc.nextLine());
-//
-//            Employee e = new PartTimeEmployee(
-//                    id, name, dob, phone, email, deptId, rate);
-//
-//            hrService.addEmployee(e);
-//            System.out.println("Added Part-time Employee successfully!");
-//
-//        } catch (Exception e) {
-//            System.out.println("Invalid input!");
-//        }
-//    }
-//
-//    // ===== ADD INTERN =====
-//    private static void addInternEmployee() {
-//        try {
-//            System.out.print("ID: ");
-//            String id = sc.nextLine();
-//
-//            System.out.print("Full name: ");
-//            String name = sc.nextLine();
-//
-//            System.out.print("Date of birth (dd/MM/yyyy): ");
-//            Date dob = sdf.parse(sc.nextLine());
-//
-//            System.out.print("Phone: ");
-//            String phone = sc.nextLine();
-//
-//            System.out.print("Email: ");
-//            String email = sc.nextLine();
-//
-//            System.out.print("Department ID: ");
-//            String deptId = sc.nextLine();
-//
-//            System.out.print("Allowance: ");
-//            double allowance = Double.parseDouble(sc.nextLine());
-//
-//            Employee e = new InternEmployee(
-//                    id, name, dob, phone, email, deptId, allowance
-//            );
-//
-//            hrService.addEmployee(e);
-//            System.out.println("Added Intern successfully!");
-//
-//        } catch (Exception e) {
-//            System.out.println("Invalid input!");
-//        }
-//    }
-//}
 
 package hrdemo;
 
@@ -188,62 +21,122 @@ public class Hrdemo {
        
             switch (choice) {
 
-                case 1:
-                    addEmployeeMenu();
-                    break;
+               case 1:
+                employeeMenu();
+                break;
 
-                case 2:
-                    updateEmployees();
-                    break;
+            case 2:
+                salaryMenu();
+                break;
 
-                case 3:
-                    searchMenu();
-                    break;
+            case 3:
+                showEmployee();
+                break;
 
-                case 4:
-                    delete();
-                    break;
-                
-                case 5:
-                    showSalaryById();
-                    break;
-                
-                case 6:
-                    hrService.showAllEmployees();
-//                    System.out.println("Exit program!");                            
-                    break;
-                case 7:
-                    showbydept();
-                    break;
-                case 8:
-                    salarybydept();
-                    break;
-                case 9:
-                    hrService.showAllWorkLogs();
-                    break;
-                default:
-                    System.out.println("Invalid choice!");
-            }
+            case 4:
+                hrService.showAllWorkLogs();
+                break;
 
-        } while (choice != 5);
+            case 5:
+                System.out.println("Exit program!");
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+        }
+    } while (choice != 5);
     }
     // ================= MENU =================
 
     private static void showMenu() {
-        System.out.println("\n===== HUMAN RESOURCE MANAGEMENT ====="
-        );
-        System.out.println("1. Add Employee");
-        System.out.println("2. Update Employees");
-        System.out.println("3. Search For Employee"); 
-        System.out.println("4. Remove Employee");
-        System.out.println("5. Show Salary By ID");
-        System.out.println("6. Show All Employees");                
-        System.out.println("7. Show Employees By Department");                
-        System.out.println("8. Show Salary By Department");        
-        System.out.println("9. Show All WorkLogs");
+        System.out.println("\n===== HUMAN RESOURCE MANAGEMENT =====");
+        System.out.println("1. Employee Management");
+        System.out.println("2. Salary Management");
+        System.out.println("3. Show Employee");
+        System.out.println("4. WorkLog Management");
+        System.out.println("5. Exit");
         System.out.print("Choose: ");
     }
+    
+    private static void employeeMenu() {
 
+        System.out.println("\n--- Employee Management ---");
+        System.out.println("1. Add Employee");
+        System.out.println("2. Update Employees");
+        System.out.println("3. Search Employee");
+        System.out.println("4. Remove Employee");
+        System.out.print("Choose: ");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        switch (choice) {
+
+            case 1:
+                addEmployeeMenu();
+                break;
+
+            case 2:
+                updateEmployees();
+                break;
+
+            case 3:
+                searchMenu();
+                break;
+
+            case 4:
+                delete();
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+
+    private static void salaryMenu() {
+
+        System.out.println("\n--- Salary Management ---");
+        System.out.println("1. Show Salary By ID");
+        System.out.println("2. Show Salary By Department");
+        System.out.print("Choose: ");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        switch (choice) {
+
+            case 1:
+                showSalaryById();
+                break;
+
+            case 2:
+                salarybydept();
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+    
+    private static void showEmployee() {
+
+        System.out.println("\n--- Department Management ---");
+        System.out.println("1. Show All Employees");
+        System.out.println("2. Show Employees By Department");
+        System.out.print("Choose: ");
+        int choice = Integer.parseInt(sc.nextLine());
+
+        switch (choice) {
+
+            case 1:
+                hrService.showAllEmployees();
+                break;
+
+            case 2:
+                showbydept();
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+    
     // ================= SEARCH EMPLOYEE MENU =================
     
     private static void searchMenu(){
@@ -253,7 +146,7 @@ public class Hrdemo {
         System.out.println("3. Phone ");
         System.out.println("4. Email ");
         System.out.println("5. Department");
-        
+       
         System.out.print("Choose type: ");
         int type = Integer.parseInt(sc.nextLine());
         System.out.println("Search For: ");
@@ -263,16 +156,34 @@ public class Hrdemo {
     
     // ================= UPDATE EMPLOYEES =================
 
-    private static void updateEmployees(){
-        
-        System.out.println("ID: ");
+    private static void updateEmployees() {
+
+        System.out.print("ID: ");
         String id = sc.nextLine().toLowerCase().trim();
-        System.out.println("New Phone: ");
-        String newphone = sc.nextLine().trim();
-        System.out.println("New Email: ");
-        String newemail = sc.nextLine().trim();
-        
-        hrService.updateEmployeess(id,newphone,newemail);
+
+        String newphone;
+        do {
+            System.out.print("New Phone: ");
+            newphone = sc.nextLine().trim();
+
+            if (!Validation.isValidPhone(newphone)) {
+                System.out.println("Invalid phone! Phone must be 9-11 digits.");
+            }
+
+        } while (!Validation.isValidPhone(newphone));
+
+        String newemail;
+        do {
+            System.out.print("New Email: ");
+            newemail = sc.nextLine().trim();
+
+            if (!Validation.isValidEmail(newemail)) {
+                System.out.println("Invalid email format!");
+            }
+
+        } while (!Validation.isValidEmail(newemail));
+
+        hrService.updateEmployeess(id, newphone, newemail);
 
     }
     
@@ -329,7 +240,7 @@ public class Hrdemo {
 
     private static void showSalaryById() {
         System.out.print("Enter Employee ID: ");
-        String id = sc.nextLine().trim();
+        String id = sc.nextLine().toLowerCase().trim();
 
         double salary = hrService.calculateSalaryById(id);
 
@@ -341,35 +252,64 @@ public class Hrdemo {
 
     private static void addFullTimeEmployee() {
         try {
-            System.out.print("ID: ");
-            String id = sc.nextLine();
 
-            System.out.print("Full name: ");
-            String name = sc.nextLine();
+            String id;
+            do {
+                System.out.print("ID: ");
+                id = sc.nextLine();
+            } while (!Validation.isNotEmpty(id));
+
+            String name;
+            do {
+                System.out.print("Full name: ");
+                name = sc.nextLine();
+            } while (!Validation.isNotEmpty(name));
 
             System.out.print("Date of birth (dd/MM/yyyy): ");
             Date dob = sdf.parse(sc.nextLine());
 
-            System.out.print("Phone: ");
-            String phone = sc.nextLine();
+            String phone;
+            do {
+                System.out.print("Phone: ");
+                phone = sc.nextLine();
+            } while (!Validation.isValidPhone(phone));
 
-            System.out.print("Email: ");
-            String email = sc.nextLine();
+            String email;
+            do {
+                System.out.print("Email: ");
+                email = sc.nextLine();
+            } while (!Validation.isValidEmail(email));
 
-            System.out.print("Department ID: ");
-            String deptId = sc.nextLine();
+            String deptId;
+            do {
+                System.out.print("Department ID: ");
+                deptId = sc.nextLine();
+            } while (!Validation.isNotEmpty(deptId));
 
-            System.out.print("Base salary: ");
-            double salary = Double.parseDouble(sc.nextLine());
+            double salary;
+            do {
+                System.out.print("Base salary: ");
+                salary = Double.parseDouble(sc.nextLine());
 
-            System.out.print("Bonus: ");
-            double bonus = Double.parseDouble(sc.nextLine());
+                if (!Validation.isPositiveNumber(salary)) {
+                    System.out.println("Salary must be positive!");
+                }
+
+            } while (!Validation.isPositiveNumber(salary));
+
+            double bonus;
+            do {
+                System.out.print("Bonus: ");
+                bonus = Double.parseDouble(sc.nextLine());
+
+            } while (!Validation.isPositiveNumber(bonus));
 
             Employee e = new FullTimeEmployee(
                     id, name, dob, phone, email, deptId, salary, bonus
             );
 
             hrService.addEmployee(e);
+
             System.out.println("Added Full-time Employee successfully!");
 
         } catch (Exception e) {
@@ -381,26 +321,50 @@ public class Hrdemo {
 
     private static void addPartTimeEmployee() {
         try {
-            System.out.print("ID: ");
-            String id = sc.nextLine();
 
-            System.out.print("Full name: ");
-            String name = sc.nextLine();
+            String id;
+            do {
+                System.out.print("ID: ");
+                id = sc.nextLine();
+            } while (!Validation.isNotEmpty(id));
+
+            String name;
+            do {
+                System.out.print("Full name: ");
+                name = sc.nextLine();
+            } while (!Validation.isNotEmpty(name));
 
             System.out.print("Date of birth (dd/MM/yyyy): ");
             Date dob = sdf.parse(sc.nextLine());
 
-            System.out.print("Phone: ");
-            String phone = sc.nextLine();
+            String phone;
+            do {
+                System.out.print("Phone: ");
+                phone = sc.nextLine();
+            } while (!Validation.isValidPhone(phone));
 
-            System.out.print("Email: ");
-            String email = sc.nextLine();
+            String email;
+            do {
+                System.out.print("Email: ");
+                email = sc.nextLine();
+            } while (!Validation.isValidEmail(email));
+            
+            String deptId;
+            do {
+                System.out.print("Department ID: ");
+                deptId = sc.nextLine();
+            } while (!Validation.isNotEmpty(deptId));
 
-            System.out.print("Department ID: ");
-            String deptId = sc.nextLine();
+            double rate;
+            do {
+                System.out.print("Hourly rate: ");
+                rate = Double.parseDouble(sc.nextLine());
 
-            System.out.print("Hourly rate: ");
-            double rate = Double.parseDouble(sc.nextLine());
+                if (!Validation.isPositiveNumber(rate)) {
+                    System.out.println("Rate must be positive!");
+                }
+
+            } while (!Validation.isPositiveNumber(rate));
 
             Employee e = new PartTimeEmployee(
                     id, name, dob, phone, email, deptId, rate
@@ -418,26 +382,50 @@ public class Hrdemo {
 
     private static void addInternEmployee() {
         try {
-            System.out.print("ID: ");
-            String id = sc.nextLine();
 
-            System.out.print("Full name: ");
-            String name = sc.nextLine();
+            String id;
+            do {
+                System.out.print("ID: ");
+                id = sc.nextLine();
+            } while (!Validation.isNotEmpty(id));
+
+            String name;
+            do {
+                System.out.print("Full name: ");
+                name = sc.nextLine();
+            } while (!Validation.isNotEmpty(name));
 
             System.out.print("Date of birth (dd/MM/yyyy): ");
             Date dob = sdf.parse(sc.nextLine());
 
-            System.out.print("Phone: ");
-            String phone = sc.nextLine();
+            String phone;
+            do {
+                System.out.print("Phone: ");
+                phone = sc.nextLine();
+            } while (!Validation.isValidPhone(phone));
 
-            System.out.print("Email: ");
-            String email = sc.nextLine();
+            String email;
+            do {
+                System.out.print("Email: ");
+                email = sc.nextLine();
+            } while (!Validation.isValidEmail(email));
 
-            System.out.print("Department ID: ");
-            String deptId = sc.nextLine();
+            String deptId;
+            do {
+                System.out.print("Department ID: ");
+                deptId = sc.nextLine();
+            } while (!Validation.isNotEmpty(deptId));
 
-            System.out.print("Allowance: ");
-            double allowance = Double.parseDouble(sc.nextLine());
+            double allowance;
+            do {
+                System.out.print("Allowance: ");
+                allowance = Double.parseDouble(sc.nextLine());
+
+                if (!Validation.isPositiveNumber(allowance)) {
+                    System.out.println("Allowance must be positive!");
+                }
+
+            } while (!Validation.isPositiveNumber(allowance));
 
             Employee e = new InternEmployee(
                     id, name, dob, phone, email, deptId, allowance

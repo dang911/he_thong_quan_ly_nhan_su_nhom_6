@@ -18,6 +18,7 @@ class Employee{
     +setPhone(newphone: String) void
     +setEmail(newemail: String) void
     +daySalary() double
+    +getSalaryInfo() double
     +calculateSalary(workLogs: List<WorkLog>) double
     +toString() String
 }
@@ -29,6 +30,7 @@ class FullTimeEmployee{
     +getBaseSalary() double
     +getBonus() double
     +daySalary() double
+    +getSalaryInfo() double
     +toString() String
 }
 
@@ -37,6 +39,7 @@ class PartTimeEmployee{
     +PartTimeEmployee(id: String,fullName: String,dob: Date,phone: String,email: String,departmentId: String)
     +getHourlyRate() double
     +daySalary() double
+    +getSalaryInfo() double
     +toString() String
 }
 
@@ -45,6 +48,7 @@ class InternEmployee{
     +InternEmployee(id: String,fullName: String,dob: Date,phone: String,email: String,departmentId: String)
     +getAllowance()  double
     +daySalary() double
+    +getSalaryInfo() double
     +toString() String
 }
 
@@ -52,6 +56,8 @@ class Department{
     -id : String
     -name : String
     +Department(id,name)
+    +getId() String
+    +getName() String
 }
 
 class HRService{
@@ -65,18 +71,22 @@ class HRService{
     +deleteEmployee(id: String)  void
     +updateEmployee( id: String)  void
     +searchEmployee( type: int,sf: String)  void
+    +assignEmployees(id: String, deptId: String) void
     +calculateSalaryById(id: String) double
     +showSalaryDeptId(deptId: String) void
     +showByDept(deptId: String) void
     +showAllEmployees() void
     +showAllWorkLogs()  void
+    +showAllLeaves() void
+    +reviewLeave(id:String, result: String) void
 }
 
 class FileHandler{
     +saveEmployees(employees: List<Employee>,append: boolean) void
-    +saveWorkLogs(workLogs: List<WorkLog>) void
     +loadEmployees() List<Employee>
-    +loadWorkLogs() List<WorkLog> 
+    +loadWorkLogs() List<WorkLog>
+    +saveLeaves(leaves: List<Leave>) void
+    +loadLeaves() List<Leave>
 }
 
 class WorkLog{
@@ -87,6 +97,24 @@ class WorkLog{
     +getHoursWorked() double
     +getDate() Date
     +getEmpId() String
+}
+
+class Leave{
+    -employeeId: String
+    -fromDate: Date
+    -toDate: Date
+    -reason: String
+    -status: String
+    +Leave(employeeId: String, fromDate: Date, toDate: Date, reason: String, status: String)
+    +getFromDate() Date
+    +getToDate() Date
+    +getEmployeeId() String
+    +getReason() String
+    +getStatus() String
+    +setStatus(status: String) void
+    +CalLeaveDays() long
+    +convert() String
+    toString() String
 }
 
 class Validation{
@@ -104,11 +132,18 @@ class Hrdemo{
     -sdf: SimpleDateFormat
     +main(String[] args) void
     +showMenu() void
+    +employeeMenu() void
+    +salaryMenu() void
+    +departmentMenu() void
     +searchMenu() void
+    +addEmpToDept() void
     +updateEmployees() void
     +delete() void
     +showbydept() void
     +salarybydept() void
+    +leaveMenu() void
+    +reviewRQ() void
+    +addRequests() void
     +addEmployeeMenu() void
     +showSalaryById() void
     +addFullTimeEmployee() void

@@ -16,7 +16,7 @@ public class FileHandler {
 
         try {
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("employees.txt", append)
+                    new FileWriter("data/employees.txt", append)
             );
             for (Employee e : employees) {
                 bw.write(e.toString());
@@ -63,7 +63,7 @@ public class FileHandler {
 
         try {
             BufferedReader br = new BufferedReader(
-                new FileReader("employees.txt")
+                new FileReader("data/employees.txt")
             );
 
             String line;
@@ -120,7 +120,7 @@ public class FileHandler {
 
         try {
             BufferedReader br = new BufferedReader(
-                    new FileReader("worklogs.txt")
+                    new FileReader("data/worklogs.txt")
             );
 
             String line;
@@ -153,7 +153,7 @@ public class FileHandler {
 
         try {
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("leaves.txt", append)
+                    new FileWriter("data/leaves.txt", append)
             );
             for (Leave l : leaves) {
                 bw.write(l.toString());
@@ -172,7 +172,7 @@ public class FileHandler {
 
         try {
             BufferedReader br = new BufferedReader(
-                    new FileReader("leaves.txt")
+                    new FileReader("data/leaves.txt")
             );
 
             String line;

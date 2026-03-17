@@ -107,7 +107,7 @@ public class HRService {
         }
     }
     
-    public void assignEmployeess(String id, String deptId) {
+    public void assignEmployees(String id, String deptId) {
         List<Employee> employeesF = fileHandler.loadEmployees();
 
         if (employeesF.isEmpty()) {

@@ -207,7 +207,7 @@ public class Hrdemo {
                 deptId = sc.nextLine();
             } while (!Validation.isNotEmpty(deptId));
 
-        hrService.assignEmployeess(id, deptId);
+        hrService.assignEmployees(id, deptId);
     }
     
     private static void delete(){

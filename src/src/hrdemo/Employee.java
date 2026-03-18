@@ -67,14 +67,14 @@ public abstract class Employee {
     public double calculateSalary(List<WorkLog> workLogs, List<Leave> leaves){
         long days = 0;
         for (WorkLog w : workLogs) {
-            if (w.getEmpId().toLowerCase().equals(this.id)) {
+            if (w.getEmpId().equals(this.id)) {
                days = w.daysWorked();
-            }
+            } 
         }
         long daysoff = 0;
         for (Leave l : leaves) {
-            if (l.getEmployeeId().toLowerCase().equals(this.id)) {
-                if (l.getStatus().equals("Approved")){
+            if (l.getEmployeeId().equals(this.id)) {
+                if (l.convert().equals("Approved")){
                     daysoff = l.CalLeaveDays();
                 }
             }

@@ -228,7 +228,7 @@ public class Hrdemo {
         System.out.println("Salary Of Department ID: ");
         String deptId = sc.nextLine().toLowerCase().trim();
         
-        hrService.showSalaryDepId(deptId);
+        hrService.showSalaryDeptId(deptId);
     }
     
     // ================= LEAVE MENU =================

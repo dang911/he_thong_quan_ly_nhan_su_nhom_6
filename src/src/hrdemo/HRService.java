@@ -145,7 +145,7 @@ public class HRService {
         }
     }
     
-    public void showSalaryDepId(String deptId){
+    public void showSalaryDeptId(String deptId){
         List<Employee> employeesF = fileHandler.loadEmployees();
         List<WorkLog> workLogs = fileHandler.loadWorkLogs();
         List<Leave> leaves = fileHandler.loadLeaves();
@@ -157,7 +157,7 @@ public class HRService {
                 sum += e.calculateSalary(workLogs,leaves);
             }
         }
-        System.out.println("| TOTAL SALARY OF " + deptId + " is " + sum);
+        System.out.println("| TOTAL SALARY OF " + deptId.toUpperCase() + " is " + String.format("%,.0f VND",sum));
     }
     
     public void showByDept(String deptId) {

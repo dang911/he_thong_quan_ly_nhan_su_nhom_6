@@ -25,7 +25,6 @@ Dự án này nhằm xây dựng một hệ thống HRMS đơn giản bằng Jav
 ## 3. Đối tượng sử dụng
 - **Nhân viên Nhân sự (HR)**
 - **Trưởng phòng / Quản lý phòng ban**
-- **Quản trị viên hệ thống**
 
 ---
 
@@ -123,11 +122,6 @@ Hệ thống gồm **11 lớp chính**, áp dụng:
 - `saveWorkLogs()`
 - `loadLeaves()`
 
-#### Lớp quản trị
-- `Administrator`
-  - `username`
-  - `password`
-
 ---
 
 ## 5. Các chức năng chính
@@ -136,33 +130,36 @@ Hệ thống gồm **11 lớp chính**, áp dụng:
 - Thêm nhân viên mới  
   - Toàn thời gian / Bán thời gian / Thực tập sinh
 - Cập nhật thông tin nhân viên
-- Xóa nhân viên theo mã
+- Xóa nhân viên theo mã nhân 
 - Hiển thị danh sách nhân viên
 - Tìm kiếm nhân viên theo:
   - Tên
-  - Phòng ban
+  - Số điện thoại
+  - Email
 
 ---
 
 ### 5.2 Quản lý phòng ban
-- Thêm phòng ban
-- Cập nhật phòng ban
-- Xóa phòng ban
 - Gán nhân viên vào phòng ban
+- Hiện thị nhân viên của phòng ban
 
 ---
 
 ### 5.3 Tính lương & Báo cáo
 - Tính lương cho từng nhân viên
-- Tính tổng quỹ lương công ty
-- Báo cáo lương theo phòng ban
+- Tính lương theo phòng ban
+
+---
+
+### 5.4 Xử lý đơn phép
+- Thêm yêu cầu nghỉ phép
+- Đánh giá yêu cầu nghỉ phép
 
 ---
 
 ### 5.4 Lưu trữ dữ liệu
 - Lưu dữ liệu vào file **CSV / TXT**
 - Tải dữ liệu khi chương trình khởi động
-- Chức năng xử lý file sẽ được mở rộng ở các giai đoạn sau
 
 ---
 

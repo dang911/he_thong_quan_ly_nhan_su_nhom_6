@@ -19,7 +19,7 @@ public class Leave {
         this.status = status;
     }
     
-    public long CalLeaveDays(){
+    public long calLeaveDays(){
         long diff = this.toDate.getTime() - this.fromDate.getTime();
         return diff / (24L * 60 * 60 * 1000);
     }

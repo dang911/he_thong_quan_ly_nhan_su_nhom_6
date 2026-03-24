@@ -112,7 +112,7 @@ class Leave{
     +getReason() String
     +getStatus() String
     +setStatus(status: String) void
-    +CalLeaveDays() long
+    +calLeaveDays() long
     +convert() String
     toString() String
 }

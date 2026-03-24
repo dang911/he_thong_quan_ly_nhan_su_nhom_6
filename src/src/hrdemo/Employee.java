@@ -22,23 +22,23 @@ public abstract class Employee {
         this.departmentId = departmentId;
     }
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getFullName() {
-        return fullName;
+        return this.fullName;
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return this.dateOfBirth;
     }
 
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
     
     public void setPhone(String newphone) {
@@ -53,7 +53,7 @@ public abstract class Employee {
         return departmentId;
     }
     public void setDepartment(String deptId) {
-        this.email = deptId;
+        this.departmentId = deptId;
     }
     
     @Override
@@ -75,7 +75,7 @@ public abstract class Employee {
         for (Leave l : leaves) {
             if (l.getEmployeeId().equals(this.id)) {
                 if (l.convert().equals("Approved")){
-                    daysoff = l.CalLeaveDays();
+                    daysoff = l.calLeaveDays();
                 }
             }
         }
